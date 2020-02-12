@@ -39,4 +39,26 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/amaranth"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="Loading"
+            android:textColor="@color/whiteColor"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
 </RelativeLayout>
