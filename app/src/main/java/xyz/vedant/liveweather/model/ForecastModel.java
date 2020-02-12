@@ -4,7 +4,8 @@ public class ForecastModel {
     String date_forecast, status_forecast, temperature_forecast;
     int status_image_forecast;
 
-    public ForecastModel(String date_forecast, String status_forecast, String temperature_forecast, int status_image_forecast) {
+    public ForecastModel(String date_forecast, String status_forecast, String temperature_forecast,
+                         int status_image_forecast) {
         this.date_forecast = date_forecast;
         this.status_forecast = status_forecast;
         this.temperature_forecast = temperature_forecast;

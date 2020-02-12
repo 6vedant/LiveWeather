@@ -35,10 +35,11 @@ public class Splash extends AppCompatActivity {
 
                         String live_api_url = (String)dataSnapshot.child("live_api").getValue();
                         String forecast_api_url = (String)dataSnapshot.child("forecasting_api").getValue();
-
+                        String curr_city = (String)dataSnapshot.child("city").getValue();
                         Intent intent = new Intent(Splash.this, TemperatureActivity.class);
                         intent.putExtra("live_api", live_api_url);
                         intent.putExtra("forecast_api", forecast_api_url);
+                        intent.putExtra("city", curr_city);
                         startActivity(intent);
                         finish();
 
