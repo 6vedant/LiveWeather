@@ -1,7 +1,6 @@
 package xyz.vedant.liveweather;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -373,13 +372,14 @@ public class TemperatureActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            exitApp();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void exitApp(){
-
+    public void exitApp() {
+        System.exit(0);
     }
 
 }
