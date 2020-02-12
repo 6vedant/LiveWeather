@@ -51,7 +51,7 @@ public class ForecastData {
     }
 
     public String getStatus() {
-        return "Clear Sky";
+        return "Clear";
     }
 
     public String getTemp() {
