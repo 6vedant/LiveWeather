@@ -1,18 +1,27 @@
 package xyz.vedant.liveweather;
 
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ScrollingActivity extends AppCompatActivity {
+
+    String curr_temp;
+
+    public String getCurr_temp() {
+        return curr_temp;
+    }
+
+    public void setCurr_temp(String curr_temp) {
+        this.curr_temp = curr_temp;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +29,21 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setCurr_temp("0");
+
+        try {
+            // getSupportActionBar().setTitle(getTitle());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                setCurr_temp("" + System.currentTimeMillis());
+                setToolbarText("26"+getString(R.string.degree_str));
+                Snackbar.make(view, "Replace with your own action"+getCurr_temp(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -51,4 +69,14 @@ public class ScrollingActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void setToolbarText(String text) {
+        try {
+            getSupportActionBar().setTitle(text);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
 }
