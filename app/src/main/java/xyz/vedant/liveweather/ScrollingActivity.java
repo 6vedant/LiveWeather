@@ -7,9 +7,12 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import xyz.vedant.liveweather.data.ForecastData;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class ScrollingActivity extends AppCompatActivity {
     public void setCurr_temp(String curr_temp) {
         this.curr_temp = curr_temp;
     }
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +42,22 @@ public class ScrollingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+
+
+        try {
+            ForecastData forecastData = new ForecastData(ScrollingActivity.this, recyclerView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setCurr_temp("" + System.currentTimeMillis());
-                setToolbarText("26"+getString(R.string.degree_str));
-                Snackbar.make(view, "Replace with your own action"+getCurr_temp(), Snackbar.LENGTH_LONG)
+                setToolbarText("26" + getString(R.string.degree_str));
+                Snackbar.make(view, "Replace with your own action" + getCurr_temp(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
