@@ -11,11 +11,12 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/choose_date_slot"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         app:cardCornerRadius="2dp"
         app:cardElevation="4dp">
 
         <LinearLayout
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -33,12 +34,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
+                    android:fontFamily="@font/average_sans"
                     android:gravity="center"
                     android:padding="4dp"
                     android:text="Today"
                     android:textColor="@color/blackColor"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -66,7 +67,7 @@
                     android:padding="4dp"
                     android:text="Clear"
                     android:textColor="@color/greyColor"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
 
             </LinearLayout>

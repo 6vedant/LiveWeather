@@ -39,7 +39,30 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.MyView
         holder.tv_date.setText(forecastModel.getDate_forecast());
         holder.status_tv.setText(forecastModel.getStatus_forecast());
         holder.tv_temperature.setText(forecastModel.getTemperature_forecast());
-        holder.status_iv.setImageResource(forecastModel.getStatus_image_forecast());
+
+        //change the image of forecast status
+        String status_lowercase = forecastModel.getStatus_forecast().toLowerCase();
+        int drawable_res;
+
+        if (status_lowercase.equals("clouds") || status_lowercase.equals("cloud")) {
+            drawable_res = R.drawable.clouds_icon;
+
+        } else if (status_lowercase.equals("rain")) {
+            drawable_res = R.drawable.rain_icon;
+
+        } else if (status_lowercase.equals("clear")) {
+            drawable_res = R.drawable.clear_icon;
+
+        } else if (status_lowercase.equals("storm")) {
+            drawable_res = R.drawable.storm_icon;
+
+        } else if (status_lowercase.equals("sun") || status_lowercase.equals("sunny")) {
+            drawable_res = R.drawable.sunny_icon;
+        } else {
+            drawable_res = R.drawable.clear_icon;
+        }
+
+        holder.status_iv.setImageResource(drawable_res);
     }
 
     @Override
