@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +74,7 @@ public class TemperatureActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     TextView tv_temperature, tv_city;
+    LinearLayout error_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,12 +104,21 @@ public class TemperatureActivity extends AppCompatActivity {
 
         tv_city.setText(getCurr_city());
 
+        error_layout = (LinearLayout) findViewById(R.id.error_layout);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Refresing data", Snackbar.LENGTH_SHORT).show();
+                loadData();
+            }
+        });
+
+        findViewById(R.id.retry_again_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Trying to fetch data", Toast.LENGTH_SHORT).show();
                 loadData();
             }
         });
@@ -141,6 +152,7 @@ public class TemperatureActivity extends AppCompatActivity {
     }
 
     public void loadData() {
+        error_layout.setVisibility(View.GONE);
         //creating a string request to send request to the url
         StringRequest stringRequest = new StringRequest(Request.Method.GET, getLive_api_url(),
                 new Response.Listener<String>() {
@@ -164,6 +176,7 @@ public class TemperatureActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //displaying the error in toast if occurrs
+                        error_layout.setVisibility(View.VISIBLE);
                         Toast.makeText(getApplicationContext(), error.getMessage() + " error at line 200", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -178,6 +191,7 @@ public class TemperatureActivity extends AppCompatActivity {
     }
 
     public void loadForecastingData() {
+        error_layout.setVisibility(View.GONE);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, getForecast_api_url(),
                 new Response.Listener<String>() {
                     @Override
@@ -270,6 +284,7 @@ public class TemperatureActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //displaying the error in toast if occurrs
+                        error_layout.setVisibility(View.VISIBLE);
                         Toast.makeText(getApplicationContext(), error.getMessage() + " error at line 200", Toast.LENGTH_SHORT).show();
                     }
                 });
