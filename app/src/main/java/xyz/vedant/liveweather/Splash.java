@@ -24,6 +24,10 @@ public class Splash extends AppCompatActivity {
         }
 
         loadData();
+
+
+
+
     }
 
     public void loadData() {
